@@ -75,17 +75,13 @@ public:
       RCLCPP_ERROR_STREAM(LOGGER, "Didn't get a response from `" << client_->get_service_name() << "` within 1s");
       return false;
     }
-    const auto& end_effectors = planning_scene->getRobotModel()->getEndEffectors();
-    std::vector<const moveit::core::JointModelGroup*> disabled_end_effectors;
-    std::remove_copy_if(end_effectors.cbegin(), end_effectors.cend(), std::back_inserter(disabled_end_effectors),
-                        [&current_end_effector =
-                             future.get()->end_effector_name](const moveit::core::JointModelGroup* const jmg) {
-                          return jmg->getName() == current_end_effector;
-                        });
 
-    if (std::any_of(disabled_end_effectors.cbegin(), disabled_end_effectors.cend(),
-                    [&req](const moveit::core::JointModelGroup* const disabled_end_effector) {
-                      return disabled_end_effector->getName() == req.group_name;
+    // TODO: Handle the case where the sub-group of the request group is a disabled end-effector
+    const auto& end_effectors = planning_scene->getRobotModel()->getEndEffectors();
+    if (std::any_of(end_effectors.cbegin(), end_effectors.cend(),
+                    [&current_eef = future.get()->end_effector_name,
+                     &req](const moveit::core::JointModelGroup* const end_effector) {
+                      return req.group_name == end_effector->getName() && req.group_name != current_eef;
                     }))
     {
       RCLCPP_ERROR_STREAM(LOGGER, "Got planning request for a disabled end-effector `"
