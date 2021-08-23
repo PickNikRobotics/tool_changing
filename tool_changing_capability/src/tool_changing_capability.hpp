@@ -55,7 +55,7 @@ private:
   moveit::core::RobotModelConstPtr robot_model_;
   std::string current_end_effector;
   rclcpp::CallbackGroup::SharedPtr callback_group_;
-  // Enable the input end-effector and disable the other remianing ones
+  // Enable the input end-effector and disable the other remaining ones
   bool enableEndEffector(const std::string& end_effector);
 };
 }  // namespace move_group
