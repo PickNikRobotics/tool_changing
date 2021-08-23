@@ -7,8 +7,11 @@ This's package th
 To use this package you need to:
 
 1- List all the end-effectors in the URDF file
+
 2- Add the `group` & `end_effector` tags to the SRDF for each end-effector
+
 3- Add `move_group/ToolChangingCapability` as a move_group node capability
+
 4- Add `initial_end_effector` parameter to move_group node to set the initial end-effector
 ```py
 move_group_capabilities = {
