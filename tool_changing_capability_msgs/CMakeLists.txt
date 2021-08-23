@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10.2)
 project(tool_changing_capability_msgs)
 
 # Default to C++17

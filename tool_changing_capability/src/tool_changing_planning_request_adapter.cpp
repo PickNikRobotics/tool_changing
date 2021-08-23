@@ -24,7 +24,7 @@ public:
 
   std::string getDescription() const override
   {
-    return "TODO";
+    return "Check if the planning motion request's group doesn't correspond to a disabled end-effector";
   }
 
   bool adaptAndPlan(const PlannerFn& planner, const planning_scene::PlanningSceneConstPtr& planning_scene,

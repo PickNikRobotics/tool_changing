@@ -1,16 +1,16 @@
-<package format="2">
+<package format="3">
     <name>tool_changing_capability</name>
     <version>0.0.1</version>
-    <description>TODO</description>
-    <author email="TODO@TODO.com">TODO</author>
+    <description>MoveGroup capability to dynamically change end-effectors</description>
+    <author email="jafar@picknik.ai">Jafar Abdi</author>
 
-    <maintainer email="TODO@TODO.com">TODO</maintainer>
+    <maintainer email="jafar@picknik.ai">Jafar Abdi</maintainer>
 
     <license>BSD</license>
 
-    <url type="website">TODO</url>
-    <url type="bugtracker">TODO</url>
-    <url type="repository">TODO</url>
+    <url type="website">https://github.com/PickNikRobotics/tool_changing</url>
+    <url type="bugtracker">https://github.com/PickNikRobotics/tool_changing/issues</url>
+    <url type="repository">https://github.com/PickNikRobotics/tool_changing</url>
 
     <buildtool_depend>ament_cmake</buildtool_depend>
     <build_depend>moveit_common</build_depend>
@@ -20,7 +20,7 @@
     <depend>moveit_ros_move_group</depend>
     <depend>tool_changing_capability_msgs</depend>
     <depend>rclcpp</depend>
-    <depend version_gte="1.11.2">pluginlib</depend>
+    <depend>pluginlib</depend>
 
     <test_depend>ament_lint_auto</test_depend>
     <test_depend>ament_lint_common</test_depend>
