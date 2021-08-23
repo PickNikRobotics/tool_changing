@@ -1,7 +1,7 @@
 <library path="moveit_move_group_tool_changing_capability">
     <class name="move_group/ToolChangingCapability" type="move_group::ToolChangingCapability" base_class_type="move_group::MoveGroupCapability">
         <description>
-            TODO
+            MoveGroup capability to dynamically change the end-effector
         </description>
     </class>
 </library>

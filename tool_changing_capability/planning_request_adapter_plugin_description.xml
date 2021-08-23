@@ -1,7 +1,7 @@
 <library path="tool_changing_planning_request_adapter">
     <class name="default_planner_request_adapters/ToolChangingAdapter" type="default_planner_request_adapters::ToolChangingAdapter" base_class_type="planning_request_adapter::PlanningRequestAdapter">
         <description>
-            TODO
+            Check if the planning motion request's group doesn't correspond to a disabled end-effector
         </description>
     </class>
 </library>
