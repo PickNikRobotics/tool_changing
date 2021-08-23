@@ -1,8 +1,17 @@
-### MoveGroup Tool Changing capability
+# MoveGroup Tool Changing capability
 
-This's package th
+Description: A package that add a move group capability to dynamically enable any of the loaded end-effectors, and a planning request adapter to make sure only the enabled end-effector is being used for planning. 
 
-#### Usage
+<img src="https://picknik.ai/assets/images/logo.jpg" width="100">
+
+[![Build and Test](https://github.com/PickNikRobotics/tool_changing/actions/workflows/build_and_test.yaml/badge.svg)](https://github.com/PickNikRobotics/tool_changing/actions/workflows/build_and_test.yaml)
+
+## Installation
+
+These instructions assume you are running on Ubuntu 20.04, rolling, and the latest MoveIt2 main branch:
+- git clone git@github.com:PickNikRobotics/tool_changing.git
+
+## Usage
 
 To use this package you need to:
 
@@ -41,11 +50,27 @@ ompl_planning_pipeline_config = {
 
 Now launch your move_group instance
 
-##### Getting current end-effector
+#### Getting current end-effector
 
 `ros2 service call /get_current_end_effector tool_changing_capability_msgs/srv/GetCurrentEndEffector {}`
 
 
-##### Change end-effector
+#### Change end-effector
 
 `ros2 service call /change_end_effector tool_changing_capability_msgs/srv/ChangeEndEffector end_effector_name:\ \'new_end_effector_name\'\ `
+
+## Setup pre-commit
+
+pre-commit is a tool to automatically run formatting checks on each commit, which saves you from manually running clang-format (or, crucially, from forgetting to run them!).
+
+Install pre-commit like this:
+
+```
+pip3 install pre-commit
+```
+
+Run this in the top directory of the repo to set up the git hooks:
+
+```
+pre-commit install
+```
