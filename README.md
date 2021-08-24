@@ -1,6 +1,6 @@
 # MoveGroup Tool Changing capability
 
-Description: A package that add a move group capability to dynamically enable any of the loaded end-effectors, and a planning request adapter to make sure only the enabled end-effector is being used for planning. 
+Description: This package adds a MoveGroupCapability to dynamically switch between a set of configured end-effectors. A separate PlanningRequestAdapter makes sure that only the enabled end-effector is being used for planning. 
 
 <img src="https://picknik.ai/assets/images/logo.jpg" width="100">
 
