@@ -48,12 +48,14 @@ public:
                                tool_changing_capability_msgs::srv::GetCurrentEndEffector::Response::SharedPtr res);
 
 private:
+  // This's used to cache the original disable collisions pairs in the loaded SRDF file
   collision_detection::AllowedCollisionMatrix cached_acm_;
   rclcpp::Service<tool_changing_capability_msgs::srv::ChangeEndEffector>::SharedPtr change_eef_service_;
   rclcpp::Service<tool_changing_capability_msgs::srv::GetCurrentEndEffector>::SharedPtr get_current_eef_service_;
   moveit::core::RobotModelConstPtr robot_model_;
   std::string current_end_effector;
   rclcpp::CallbackGroup::SharedPtr callback_group_;
+  // Enable the input end-effector and disable the other remaining ones
   bool enableEndEffector(const std::string& end_effector);
 };
 }  // namespace move_group

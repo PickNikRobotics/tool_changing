@@ -96,6 +96,7 @@ bool ToolChangingCapability::enableEndEffector(const std::string& end_effector)
   planning_scene_monitor::LockedPlanningSceneRW scene(context_->planning_scene_monitor_);
   auto& acm = scene->getAllowedCollisionMatrixNonConst();
   acm = cached_acm_;
+  // Disable collisions between the disabled end-effectors' links and the rest of the robot links
   for (const auto& eef_jmg : robot_model_->getEndEffectors())
   {
     if (eef_jmg->getName() == end_effector)
