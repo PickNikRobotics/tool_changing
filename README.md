@@ -8,7 +8,7 @@ Description: A package that add a move group capability to dynamically enable an
 
 ## Installation
 
-These instructions assume you are running on Ubuntu 20.04, rolling, and the latest MoveIt2 main branch:
+These instructions assume you are running on Ubuntu 20.04, rolling, and the latest MoveIt 2 main branch:
 - git clone git@github.com:PickNikRobotics/tool_changing.git
 
 ## Usage
