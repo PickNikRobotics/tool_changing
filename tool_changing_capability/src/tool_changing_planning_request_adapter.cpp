@@ -90,7 +90,7 @@ public:
                              req_jmg->isSubgroup(disabled_end_effector->getName());
                     }))
     {
-      RCLCPP_ERROR_STREAM(LOGGER, "Got planning request for a group that contains/is a disabled end-effector `"
+      RCLCPP_ERROR_STREAM(LOGGER, "Got planning request for a group that contains or is a disabled end-effector `"
                                       << req.group_name << "` -- currently enabled end-effector `"
                                       << future.get()->end_effector_name << "`");
       return false;
