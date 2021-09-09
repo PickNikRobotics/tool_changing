@@ -87,12 +87,13 @@ void ToolChangingCapability::changeEndEffectorCB(
 
 bool ToolChangingCapability::enableEndEffector(const std::string& end_effector)
 {
-  if (!robot_model_->hasEndEffector(end_effector))
+  if (!end_effector.empty() && !robot_model_->hasEndEffector(end_effector))
   {
     RCLCPP_ERROR_STREAM(LOGGER, "Unknown end-effector `" << end_effector << "`");
     return false;
   }
-  RCLCPP_INFO_STREAM(LOGGER, "Setting current end-effector to `" << end_effector << "`");
+  RCLCPP_INFO_STREAM_EXPRESSION(LOGGER, !end_effector.empty(),
+                                "Setting current end-effector to `" << end_effector << "`");
   planning_scene_monitor::LockedPlanningSceneRW scene(context_->planning_scene_monitor_);
   auto& acm = scene->getAllowedCollisionMatrixNonConst();
   acm = cached_acm_;

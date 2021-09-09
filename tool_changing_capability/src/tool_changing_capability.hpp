@@ -56,6 +56,7 @@ private:
   std::string current_end_effector;
   rclcpp::CallbackGroup::SharedPtr callback_group_;
   // Enable the input end-effector and disable the other remaining ones
+  // If the end-effector name is an empty string disable all end-effectors
   bool enableEndEffector(const std::string& end_effector);
 };
 }  // namespace move_group
