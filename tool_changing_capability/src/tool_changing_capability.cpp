@@ -87,13 +87,16 @@ void ToolChangingCapability::changeEndEffectorCB(
 
 bool ToolChangingCapability::enableEndEffector(const std::string& end_effector)
 {
-  if (!robot_model_->hasEndEffector(end_effector))
+  if (!end_effector.empty() && !robot_model_->hasEndEffector(end_effector))
   {
     RCLCPP_ERROR_STREAM(LOGGER, "Unknown end-effector `" << end_effector << "`");
     return false;
   }
-  RCLCPP_INFO_STREAM(LOGGER, "Setting current end-effector to `" << end_effector << "`");
+  RCLCPP_INFO_STREAM_EXPRESSION(LOGGER, !end_effector.empty(),
+                                "Setting current end-effector to `" << end_effector << "`");
   planning_scene_monitor::LockedPlanningSceneRW scene(context_->planning_scene_monitor_);
+  // TODO(JafarAbdi): I don't think we need to cache the acm at all, we only need to set the default entry for the
+  // end-effectors' links
   auto& acm = scene->getAllowedCollisionMatrixNonConst();
   acm = cached_acm_;
   // Disable collisions between the disabled end-effectors' links and the rest of the robot links
@@ -104,11 +107,7 @@ bool ToolChangingCapability::enableEndEffector(const std::string& end_effector)
     RCLCPP_INFO_STREAM(LOGGER, "Disabling end-effector `" << eef_jmg->getName() << "`");
     const auto& eef_links = robot_model_->getEndEffector(eef_jmg->getName())->getLinkModelNames();
     std::for_each(eef_links.cbegin(), eef_links.cend(),
-                  [&robot_links = robot_model_->getLinkModelNames(), &acm](const auto& eef_link) {
-                    std::for_each(robot_links.cbegin(), robot_links.cend(), [&eef_link, &acm](const auto& robot_link) {
-                      acm.setEntry(eef_link, robot_link, true);
-                    });
-                  });
+                  [&acm](const auto& eef_link) { acm.setDefaultEntry(eef_link, true); });
   }
   context_->planning_scene_monitor_->triggerSceneUpdateEvent(planning_scene_monitor::PlanningSceneMonitor::UPDATE_SCENE);
   current_end_effector = end_effector;
