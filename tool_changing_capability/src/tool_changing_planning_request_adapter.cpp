@@ -77,10 +77,11 @@ public:
     }
     const auto& end_effectors = planning_scene->getRobotModel()->getEndEffectors();
     const auto& req_jmg = planning_scene->getRobotModel()->getJointModelGroup(req.group_name);
+    const auto& result = future.get();
     std::vector<const moveit::core::JointModelGroup*> disabled_end_effectors;
     std::remove_copy_if(end_effectors.cbegin(), end_effectors.cend(), std::back_inserter(disabled_end_effectors),
                         [&current_end_effector =
-                             future.get()->end_effector_name](const moveit::core::JointModelGroup* const jmg) {
+                             result->end_effector_name](const moveit::core::JointModelGroup* const jmg) {
                           return jmg->getName() == current_end_effector;
                         });
 
@@ -92,7 +93,7 @@ public:
     {
       RCLCPP_ERROR_STREAM(LOGGER, "Got planning request for a group that contains or is a disabled end-effector `"
                                       << req.group_name << "` -- currently enabled end-effector `"
-                                      << future.get()->end_effector_name << "`");
+                                      << result->end_effector_name << "`");
       return false;
     }
 

@@ -59,7 +59,8 @@ void ToolChangingCapability::initialize()
   }
   else
     current_end_effector = initial_end_effector_param.as_string();
-  RCLCPP_INFO_STREAM(LOGGER, "Enabling `" << current_end_effector << "` as an active end-effector");
+  RCLCPP_INFO_STREAM_EXPRESSION(LOGGER, !current_end_effector.empty(),
+                                "Enabling `" << current_end_effector << "` as an active end-effector");
   cached_acm_ =
       planning_scene_monitor::LockedPlanningSceneRO(context_->planning_scene_monitor_)->getAllowedCollisionMatrix();
   enableEndEffector(current_end_effector);
