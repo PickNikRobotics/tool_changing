@@ -6,7 +6,7 @@
 
   <maintainer email="jafar@picknik.ai">Jafar Abdi</maintainer>
 
-  <license>BSD</license>
+  <license>BSD-3-Clause</license>
   <url type="website">https://github.com/PickNikRobotics/tool_changing</url>
   <url type="bugtracker">https://github.com/PickNikRobotics/tool_changing/issues</url>
   <url type="repository">https://github.com/PickNikRobotics/tool_changing</url>
